@@ -23,8 +23,7 @@ SHELL ["/bin/bash", "-c"]
 RUN curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash \
     && echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bashrc \
     && echo 'eval "$(pyenv init -)"' >> ~/.bashrc \
-    && echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc \
-    && source ~/.bashrc
+    && echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
 
 RUN ~/.pyenv/bin/pyenv install 2.7.14
 RUN ~/.pyenv/bin/pyenv install 3.5.5
