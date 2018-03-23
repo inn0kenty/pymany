@@ -1,7 +1,9 @@
-FROM ubuntu:latest
+FROM debian:jessie-slim
+
+ENV LANG C.UTF-8
 
 RUN apt-get update \
-    && apt-get install -y \
+    && apt-get install --no-install-recommends -y \
        make \
        build-essential \
        libssl-dev \
@@ -16,7 +18,10 @@ RUN apt-get update \
        libncursesw5-dev \
        xz-utils \
        tk-dev \
-       git
+       git \
+       ca-certificates \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 SHELL ["/bin/bash", "-c"]
 
@@ -30,5 +35,3 @@ RUN ~/.pyenv/bin/pyenv install 3.5.5
 RUN ~/.pyenv/bin/pyenv install 3.6.4
 
 RUN ~/.pyenv/bin/pyenv global 2.7.14 3.5.5 3.6.4
-
-ENV LANG C.UTF-8
