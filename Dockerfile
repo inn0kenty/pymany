@@ -30,3 +30,5 @@ RUN ~/.pyenv/bin/pyenv install 3.5.5
 RUN ~/.pyenv/bin/pyenv install 3.6.4
 
 RUN ~/.pyenv/bin/pyenv global 2.7.14 3.5.5 3.6.4
+
+ENV LANG C.UTF-8
