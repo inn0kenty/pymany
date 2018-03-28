@@ -1,27 +1,22 @@
-FROM debian:jessie-slim
+FROM alpine:3.7
 
 ENV LANG C.UTF-8
 
-RUN apt-get update \
-    && apt-get install --no-install-recommends -y \
-       make \
-       build-essential \
-       libssl-dev \
-       zlib1g-dev \
-       libbz2-dev \
-       libreadline-dev \
-       libsqlite3-dev \
-       wget \
-       curl \
-       llvm \
-       libncurses5-dev \
-       libncursesw5-dev \
-       xz-utils \
-       tk-dev \
-       git \
-       ca-certificates \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+RUN apk update \
+    && apk add --no-cache \
+        bash \
+        docker \
+        make \
+        curl \
+        git \
+        build-base \
+        bzip2-dev \
+        readline-dev \
+        postgresql-dev \
+        sqlite-dev \
+        linux-headers \
+        libpq \
+        zlib-dev
 
 SHELL ["/bin/bash", "-c"]
 
@@ -35,3 +30,9 @@ RUN ~/.pyenv/bin/pyenv install 3.5.5
 RUN ~/.pyenv/bin/pyenv install 3.6.4
 
 RUN ~/.pyenv/bin/pyenv global 2.7.14 3.5.5 3.6.4
+RUN ~/.pyenv/shims/pip3 \
+    --no-cache-dir \
+    --disable-pip-version-check \
+    install mkdocs
+
+CMD ["/bin/bash"]
