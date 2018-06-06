@@ -37,3 +37,6 @@ RUN ~/.pyenv/shims/pip3 \
     pipenv==11.0.2 \
     alembic \
     psycopg2
+
+COPY init.sh .
+ENTRYPOINT [ "./init.sh" ]
